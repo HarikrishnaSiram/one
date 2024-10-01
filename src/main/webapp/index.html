@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('pic.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            width: 300px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #FF6347;
+        }
+        .input-group input {
+            width: 90%;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .input-group input:focus {
+            border-color: #FF6347;
+            box-shadow: 0 0 5px rgba(255, 99, 71, 0.5);
+            outline: none;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+        .message {
+            text-align: center;
+            margin-top: 15px;
+            color: red;
+        }
+        .register-link {
+            text-align: center;
+            margin-top: 10px;
+            color: #0b6eef;
+            text-decoration: none;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgb(4, 241, 134);
+            border: 2px solid #007BFF;
+            border-radius: 20px;
+            width: 500px; /* Larger width */
+            height: 150px; /* Larger height */
+            text-align: center;
+            line-height: 150px; /* Center text vertically */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            font-weight: bold;
+            color: white; /* Text color */
+            font-size: 1.5em; /* Larger text size */
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2><i class="fas fa-sign-in-alt"></i> Login</h2>
+        <div class="input-group">
+            <label for="username"><i class="fas fa-user"></i> Username</label>
+            <input type="text" id="username" placeholder="Enter your username">
+        </div>
+        <div class="input-group">
+            <label for="password"><i class="fas fa-lock"></i> Password</label>
+            <input type="password" id="password" placeholder="Enter your password">
+        </div>
+        <button class="btn" onclick="login()"><i class="fas fa-sign-in-alt"></i> Login</button>
+        <div class="message" id="message"></div>
+        <a class="register-link" href="register.html"><i class="fas fa-user-plus"></i> New User? Register Now</a>
+    </div>
+
+    <div class="popup" id="popup">
+        <i class="fas fa-check-circle"></i> Logged in successfully!
+    </div>
+
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const message = document.getElementById('message');
+            const popup = document.getElementById('popup');
+
+            if (username === '' || password === '') {
+                message.textContent = 'Please fill in both fields.';
+            } else if (username === 'hari' && password === '123') {
+                message.style.color = 'green';
+                message.textContent = 'Logged in successfully!';
+                popup.style.display = 'block'; // Show popup
+
+                setTimeout(() => {
+                    popup.style.display = 'none'; // Hide popup after 3 seconds
+                    window.location.href = 'home.html'; // Redirect to home page
+                }, 3000); // Show message for 3 seconds
+            } else {
+                message.textContent = 'Invalid username or password.';
+            }
+        }
+    </script>
+</body>
+</html>
